@@ -1,0 +1,9 @@
+:root{
+    --bg_color: rgb(255, 0, 0);
+}
+*{
+    margin: 0;
+}
+.bg{
+    background-color: var(--bg_color);
+}
