@@ -8,6 +8,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::controller(HomeController::class)->group(function () {
-    Route::get('/', 'index');
-});
+Route::get('/', [HomeController::class, 'init']);
+
+// Route::post('/', [HomeController])

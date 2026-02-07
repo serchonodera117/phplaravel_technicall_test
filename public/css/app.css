@@ -1,9 +1,72 @@
 :root{
-    --bg_color: rgb(255, 0, 0);
+    --bg_color: rgb(240, 235, 240);
+    --header_bg: rgb(59, 31, 57);
+    --header_title_container: rgb(9, 4, 44);
+    --text_for_darkbg: rgb(181, 176, 193);
+    --table-head-color: rgb(99, 61, 61);
 }
 *{
     margin: 0;
 }
-.bg{
+
+.general-container{
     background-color: var(--bg_color);
+    width: 100vw;
+    height: 100vh;
+}
+
+/*--- Header*/
+.mainheader{
+    width: 100%;
+    height: fit-content;
+    display:  flex;
+    position: relative;
+    background-color: var(--header_bg); 
+    color: var(--text_for_darkbg);
+}
+.mainheader div {padding: 5px 5px;}
+
+.title_container{
+    position: relative;
+    width: 30vw;
+    height: fit-content;
+    border: 0px;
+    background-color: var(--header_title_container);
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.left_column{
+    width: 70vw;
+}.left_column div{
+    width: 30%;
+    float: right;
+}.left_column div form input{
+    background-color: rgb(176, 175, 183);
+}
+/* ----body page */
+.body-page{
+    padding-top: 10vw;
+    height: auto;
+    width: auto;
+}
+
+/* ----table */
+.table-container{
+    width: 85vw;
+    height: fit-content;
+    max-height: 35rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: center;
+    background-color:  rgb(224, 217, 225);
+    box-shadow: 1px  1px 10px 1px rgba(139, 132, 132, 0.578);
+
+}
+.btn{
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
 }

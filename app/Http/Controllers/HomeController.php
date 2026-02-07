@@ -3,27 +3,55 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
-    function index(){
+    function init(){
 
-        $name = "Cherchin";
-        // $cosas = array();
-        //$key_written_by_user
+        $states = null;
+        // $response = Http::withoutVerifying()->get();
         
         
-        /*ejemplo de codigo
-
-        //al escribir en una caja de texto
-        function writeKey(event){  -- escrita por una caa de texto -- $key=event.text }
+        // if($response -> successful()){
+            // $data = $response ->json();
+            // $states = $data['response']['estado'];
+        // }
         
-        //---al presionar un botón
-        function getdata(){
-           $cosas = await http.get(key_written_by_user)
-        }
-        
-          */
-        return view('home', compact('name'));
+        $states = array(            "Ciudad de México",
+            "Aguascalientes",
+            "Baja California",
+            "Baja California Sur",
+            "Campeche",
+            "Coahuila de Zaragoza",
+            "Colima",
+            "Chiapas",
+            "Chihuahua",
+            "Durango",
+            "Guanajuato",
+            "Guerrero",
+            "Hidalgo",
+            "Jalisco",
+            "México",
+            "Michoacán de Ocampo",
+            "Morelos",
+            "Nayarit",
+            "Nuevo León",
+            "Oaxaca",
+            "Puebla",
+            "Querétaro",
+            "Quintana Roo",
+            "San Luis Potosí",
+            "Sinaloa",
+            "Sonora",
+            "Tabasco",
+            "Tamaulipas",
+            "Tlaxcala",
+            "Veracruz de Ignacio de la Llave",
+            "Yucatán",
+            "Zacatecas"
+        );
+        return view('home', ['states' => $states]);
     }
 }
