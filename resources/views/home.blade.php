@@ -20,18 +20,22 @@
             
             <header class="mainheader">
                 <div class="title_container">
-                    <h1>Technicall Test</h1>
+                    <h1>Prueba técnica</h1>
                 </div>
                 <div class="left_column">
                    <div class="container-fluid">
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="State" aria-label="Search"/>
-                        
-                            <button class="btn btn-outline-success" type="submit">
+                        <form class="d-flex" role="search" >
+                            <input 
+                            id="local-search"
+                            class="form-control me-2" 
+                            type="search" placeholder="Estado" aria-label="Buscar"
+                            />
+                            <button class="btn btn-outline-success" type="search" disabled>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                                 </svg>
                             </button>
+                            <div id="div-searchlist" class="contianer-search-list hidden"></div>
                         </form>
                     </div>
                 </div>
@@ -52,12 +56,12 @@
                                 <td>{{$loop->index+1}}</td>
                                 <td>{{$state}}</td>
                                 <td>
-                                    <button class="btn btn-primary">
-                                        Mostrar más de  {{$state}}
+                                    <a class="btn btn-primary" href="{{url('/'.$state)}}">
+                                        <label> Mostrar más </label>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-square-fill" viewBox="0 0 16 16">
                                             <path d="M14 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zM5.904 10.803 10 6.707v2.768a.5.5 0 0 0 1 0V5.5a.5.5 0 0 0-.5-.5H6.525a.5.5 0 1 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 .707.707"/>
                                         </svg>
-                                    </button>
+                                    </a>
                                </td>
                             </tr>
                             @endforeach
@@ -68,4 +72,33 @@
             </div>
         </div>
     </body>
+    <script>
+        //local search bar to avoid multiple http request.
+
+        const states = @json($states);
+        const input = document.getElementById('local-search');
+        const divSearchList = document.getElementById('div-searchlist');
+        var searchlist = []
+        // divSearchList.style.display = "none"
+        input.addEventListener('input',(e)=>{
+            const value = e.target.value.toLowerCase();
+            
+            if(value.length>0){
+                divSearchList.classList.remove('hidden');
+            }else{
+                divSearchList.classList.add('hidden');
+            }
+            searchlist = states.filter(x =>
+                x.toLowerCase().includes(value)
+            )
+            divSearchList.innerHTML = searchlist.map((element)=>`
+                    
+                    <a class="dropdown-item btn-primary" href="/${element}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-square-fill" viewBox="0 0 16 16">
+                            <path d="M14 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zM5.904 10.803 10 6.707v2.768a.5.5 0 0 0 1 0V5.5a.5.5 0 0 0-.5-.5H6.525a.5.5 0 1 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 .707.707"/>
+                        </svg>
+                        <label> ${element}</label>
+                    </a>`);
+        })
+    </script>
 </html>

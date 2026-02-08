@@ -1,0 +1,20 @@
+:root{
+    --bg_color_m: rgb(230, 224, 230);
+}
+
+body{
+    background-color: var(--bg_color_m);
+}
+
+.div-list-m{
+    width: 80%;
+    height: fit-content;
+    max-height: 60vh;
+    margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    color: rgb(red, green, rgb(21, 21, 68));
+    box-shadow: 5px 5px 10px 1px rgba(202, 136, 202, 0.651);
+}

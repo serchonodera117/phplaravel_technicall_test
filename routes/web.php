@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StateController;
 
 
-Route::get('/', function () {
-    return view('home');
-});
 
 Route::get('/', [HomeController::class, 'init']);
 
-// Route::post('/', [HomeController])
+
+//----------------------
+Route::get('/{name}', [StateController::class, 'init'])->name("{name}");
